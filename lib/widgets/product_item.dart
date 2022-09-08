@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/screens/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem(this.imageUrl, this.title, this.id, {Key? key})
+  const ProductItem(
+      // this.imageUrl,
+      // this.title,
+      // this.id,
+      {Key? key})
       : super(key: key);
-  final String id;
-  final String title;
-  final String imageUrl;
+  // final String id;
+  // final String title;
+  // final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Product>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GestureDetector(
