@@ -46,18 +46,30 @@ class Cart with ChangeNotifier {
               quantity: existingCartItem.quantity + 1));
     } else {
       _items.putIfAbsent(
-          productId,
-          () => CartItem(
-              title: title,
-              id: DateTime.now().toString(),
-              price: price,
-              quantity: 1));
+        productId,
+        () => CartItem(
+            title: title,
+            id: DateTime.now().toString(),
+            price: price,
+            quantity: 1),
+      );
     }
     notifyListeners();
   }
 
   void removeItem(String productId) {
     _items.remove(productId);
+    notifyListeners();
+  }
+
+  void removeSingleItem(String productId) {
+    if (!_items.containsKey(productId)) {
+      return;
+    }
+  }
+
+  void clear() {
+    _items = {};
     notifyListeners();
   }
 }
