@@ -67,8 +67,9 @@ class Products with ChangeNotifier {
   }
 
   void addProduct(Product product) {
-    final url = Uri.parse(
-        "https://console.firebase.google.com/project/shop-app-4ba29/database/shop-app-4ba29-default-rtdb/data/~2F");
+    final url = Uri.https(
+        'shop-app-4ba29-default-rtdb.asia-southeast1.firebasedatabase.app/',
+        'products.json');
     http.post(
       url,
       body: json.encode({
