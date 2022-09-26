@@ -68,8 +68,7 @@ class Products with ChangeNotifier {
 
   void addProduct(Product product) {
     final url = Uri.https(
-        'shop-app-4ba29-default-rtdb.asia-southeast1.firebasedatabase.app/',
-        'products.json');
+        'shopapp-d7ac6-default-rtdb.firebaseio.com', '/products.json');
     http.post(
       url,
       body: json.encode({
@@ -79,6 +78,8 @@ class Products with ChangeNotifier {
         'imageUrl': product.imageUrl,
         'isFavourite': product.isFavourite
       }),
+    ).then((response) =>
+
     );
     //JSON = Java Script Object Notation;
 
