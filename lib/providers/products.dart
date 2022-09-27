@@ -66,10 +66,11 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     final url = Uri.https(
         'shopapp-d7ac6-default-rtdb.firebaseio.com', '/products.json');
-    http.post(
+    return http
+        .post(
       url,
       body: json.encode({
         'title': product.title,
@@ -78,20 +79,25 @@ class Products with ChangeNotifier {
         'imageUrl': product.imageUrl,
         'isFavourite': product.isFavourite
       }),
-    ).then((response) =>
-
-    );
+    )
+        .then((response) {
+      print(json.decode(response.body));
+      final newProduct = Product(
+          id: json.decode(response.body)['name'],
+          //  id: DateTime.now().toString(),
+          description: product.description,
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price);
+      _items.add(newProduct);
+      notifyListeners();
+    }).catchError((error) {
+      print(error);
+      throw error;
+    });
     //JSON = Java Script Object Notation;
 
-    final newProduct = Product(
-        id: DateTime.now().toString(),
-        description: product.description,
-        title: product.title,
-        imageUrl: product.imageUrl,
-        price: product.price);
-    _items.add(newProduct);
     //_items.insert(0, newProduct); //at the start of the list.
-    notifyListeners();
   }
 
   void updateProduct(String id, Product newProduct) {
