@@ -74,6 +74,9 @@ class Products with ChangeNotifier {
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractedData == null) {
+        return;
+      }
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
@@ -163,7 +166,7 @@ class Products with ChangeNotifier {
 
     notifyListeners();
     if (response.statusCode >= 400) {
-      _items.insert(existingProductIndex, existingProduct!);
+      _items.insert(existingProductIndex, existingProduct);
       notifyListeners();
 
       throw const HttpException('Could not delete product.');
