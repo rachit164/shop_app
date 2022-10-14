@@ -19,15 +19,16 @@ class AuthScreen extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              colors: [
-                const Color.fromRGBO(215, 117, 255, 1).withOpacity(0.5),
-                const Color.fromRGBO(255, 188, 117, 1).withOpacity(0.9)
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: const [0, 1],
-            )),
+              gradient: LinearGradient(
+                colors: [
+                  const Color.fromRGBO(215, 117, 255, 1).withOpacity(0.5),
+                  const Color.fromRGBO(255, 188, 117, 1).withOpacity(0.9)
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: const [0, 1],
+              ),
+            ),
           ),
           SingleChildScrollView(
             child: SizedBox(
@@ -67,7 +68,7 @@ class AuthScreen extends StatelessWidget {
                   ),
                   Flexible(
                     flex: deviceSize.width > 600 ? 2 : 1,
-                    child: AuthCard(),
+                    child: const AuthCard(),
                   )
                 ],
               ),
@@ -88,7 +89,7 @@ class AuthCard extends StatefulWidget {
 
 class _AuthCardState extends State<AuthCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  AuthMode _authMode = AuthMode.Signup;
+  AuthMode _authMode = AuthMode.Login;
   Map<String, String> _authData = {
     'email': '',
     'password': '',
@@ -99,18 +100,20 @@ class _AuthCardState extends State<AuthCard> {
 
   void _showErrorDialog(String message) {
     showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-              title: const Text('An error occured!'),
-              content: Text(message),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'))
-              ],
-            ));
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('An error occured!'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _submit() async {
@@ -252,7 +255,9 @@ class _AuthCardState extends State<AuthCard> {
                   onPressed: _switchAuthMode,
                   style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 4),
+                        horizontal: 30.0,
+                        vertical: 4,
+                      ),
                       backgroundColor: Theme.of(context).primaryColor),
                   child: Text(
                       '${_authMode == AuthMode.Login ? 'SignUp' : 'Login'} INSTEAD'),
