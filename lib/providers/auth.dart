@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import '../models//http_exception.dart';
 import 'package:http/http.dart' as http;
 
 class Auth with ChangeNotifier {
