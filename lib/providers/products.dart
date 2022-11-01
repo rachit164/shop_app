@@ -41,7 +41,8 @@ class Products with ChangeNotifier {
   ];
 
   final String authToken;
-  Products(this.authToken, this._items);
+  final String userId;
+  Products(this.authToken, this.userId, this._items);
 
   var _showFavouritesOnly = false;
 
@@ -109,7 +110,8 @@ class Products with ChangeNotifier {
           'description': product.description,
           'price': product.price,
           'imageUrl': product.imageUrl,
-          'isFavourite': product.isFavourite
+          'isFavourite': product.isFavourite,
+          'creatorId': userId
         }),
       );
       final newProduct = Product(

@@ -59,10 +59,11 @@ class CartItem extends StatelessWidget {
                       'Do you want to remove the item from the cart?'),
                   actions: [
                     TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop(false);
-                        },
-                        child: const Text('No')),
+                      onPressed: () {
+                        Navigator.of(ctx).pop(false);
+                      },
+                      child: const Text('No'),
+                    ),
                     TextButton(
                         onPressed: () {
                           Navigator.of(ctx).pop(true);
