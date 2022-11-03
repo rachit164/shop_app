@@ -4,7 +4,6 @@ import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/products.dart';
 import 'package:shop_app/screens/cart_screen.dart';
 import 'package:shop_app/widgets/app_drawer.dart';
-
 import '../widgets/badge.dart';
 import '../widgets/product_grid.dart';
 
@@ -69,7 +68,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 //value: 1,
                 value: FilterOptions.All,
                 child: Text('Show All'),
-              )
+              ),
             ],
             icon: const Icon(Icons.more_vert),
             onSelected: (FilterOptions selectedValue) {
