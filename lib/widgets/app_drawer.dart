@@ -30,13 +30,13 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.payment),
             title: const Text('Orders'),
             onTap: () {
-              // Navigator.of(context)
-              //     .pushReplacementNamed(OrdersScreen.routeName);
-              Navigator.of(context).pushReplacement(
-                CustomRoute(
-                  builder: (ctx) => const OrdersScreen(),
-                ),
-              );
+              Navigator.of(context)
+                  .pushReplacementNamed(OrdersScreen.routeName);
+              // Navigator.of(context).pushReplacement(
+              //   CustomRoute(
+              //     builder: (ctx) => const OrdersScreen(),
+              //   ),
+              // );
             },
           ),
           const Divider(),
